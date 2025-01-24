@@ -6,3 +6,11 @@ chrome.runtime.onInstalled.addListener(function () {
     isCSES ? chrome.action.enable(tab.tabId) : chrome.action.disable(tab.tabId);
   });
 });
+
+chrome.commands.onCommand.addListener((shortcut) => {
+  console.log('lets reload');
+  console.log(shortcut);
+  if(shortcut.includes("+M")) {
+      chrome.runtime.reload();
+  }
+})

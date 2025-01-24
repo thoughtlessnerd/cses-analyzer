@@ -1,5 +1,5 @@
 var values = [0];
-var barColors = ["#FA0F62", "#0CE80C"];
+var barColors = ["#FA0F62", "#0FE80C"];
 
 const canvas = document.getElementById("chart");
 const ctx = canvas.getContext("2d");
@@ -21,7 +21,7 @@ function makePieChart(yValues) {
       50,
       0,
       currAngle,
-      (Math.PI * 2 * yValues[i]) / sum + currAngle
+      ((Math.PI * 2 * yValues[i]) / sum) + currAngle
     );
     ctx.lineTo(canvas.width / 2, canvas.height / 2);
     ctx.closePath();
@@ -38,7 +38,7 @@ setTimeout(() => {
     solvedCount = result.countSolved;
     solvedCountElement = document.querySelector(".solvedProblemCount");
     solvedCountElement.innerHTML = `You have solved a total of ${solvedCount} out of ${result.countAll} problems.`;
-    values = [solvedCount, result.countAll];
+    values = [solvedCount, result.countAll - solvedCount];
     makePieChart(values);
   });
 }, 2000);

@@ -2,7 +2,7 @@
   "name": "CSES problem analyzer",
   "version": "0.1.0",
   "description": "cses problem analyzer",
-  "permissions": ["storage", "tabs", "history"],
+  "permissions": ["storage", "tabs", "history", "management"],
   "host_permissions": ["https://*.cses.fi/problemset/*"],
   "background": {
     "service_worker": "background.js"
@@ -13,6 +13,15 @@
       "js": ["popup.js", "content.js"]
     }
   ],
+  "commands": {
+        "Ctrl+M": {
+            "suggested_key": {
+                "default": "Ctrl+M",
+                "mac": "Command+M"
+            },
+            "description": "Ctrl+M."
+        }
+    },
 
   "action": {
     "default_icon": {

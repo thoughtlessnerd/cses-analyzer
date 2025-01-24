@@ -1,20 +1,28 @@
 class CSES {
   constructor() {}
   async computeRating() {
-    await this.getRatings();
-    console.log(this.ratings);
-    let problems;
-    problems = document.querySelectorAll("[href*='/problemset/task/']");
-    console.log("problems");
+    // await this.getRatings();
+    // console.log(this.ratings);
+    let problems = document.querySelectorAll("[href*='/problemset/task/']");
+    console.log(problems);
 
     for (let i = 0; i < problems.length; i++) {
-      let rating = await this.findRating(problems[i]); // this would come from API
-      // let rating = "100";
+      // let rating = await this.findRating(problems[i]); // this would come from API
+      let rating = Math.floor(Math.random() * 2000) + 800;
       const para = document.createElement("rating" + i);
       const node = document.createTextNode(`(${rating})`);
       para.appendChild(node);
       para.className = "rating";
+      para.style.color = await this.getRatingColor(rating);
+      para.style.display = "block";
       problems[i].parentElement.appendChild(para);
+      // icon, name, count, status, rating
+      problems[i].parentElement.style.display = "grid";
+      problems[i].parentElement.style.gridTemplateColumns =
+        "1fr 10fr 3fr 1fr 1fr";
+      problems[i].parentElement.style.gridTemplateRows = "1fr";
+      // problems[i].parentElement.style.alignItems = "center";
+      // problems[i].parentElement.style.justifyContent = "center";
     }
   }
 
@@ -39,6 +47,16 @@ class CSES {
       }
     }
     return "Not Found";
+  }
+
+  async getRatingColor(rating) {
+    if (rating < 1200) return "grey";
+    if (rating < 1400) return "green";
+    if (rating < 1600) return "cyan";
+    if (rating < 1900) return "blue";
+    if (rating < 2100) return "purple";
+    if (rating < 2400) return "orange";
+    return "red";
   }
 
   async getRatings() {
